@@ -1,0 +1,25 @@
+#!/bin/bash
+
+if [[ -z $DISPLAY ]];
+then
+    echo "DISPLAY is not set: Set the DISPLAY variable"
+    exit
+fi
+
+if [[ -z $KAFFELOGIC_FILES ]];
+then
+    KAFFELOGIC_FILES=$HOME/kaffelogic
+fi
+
+mkdir -p $KAFFELOGIC_FILES
+
+xhost +local:*
+docker run \
+    --rm \
+    --privileged \
+    -e DISPLAY=$DISPLAY \
+    -v /dev:/dev:rw \
+    -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
+    -v $HOME/.kl:/home/kl/.Kaffelogic\ Studio \
+    -v $KAFFELOGIC_FILES:/home/kl/kaffelogic/ \
+    kaffelogic-studio:latest
