@@ -12,14 +12,24 @@ then
 fi
 
 mkdir -p $KAFFELOGIC_FILES
+#    --tmpfs /tmp \
+#    --tmpfs /run \
+#    --tmpfs /run/lock \
 
 xhost +local:*
 docker run \
-    --rm \
-    --privileged \
+    --name=kaffelogic-studio \
+    -ti \
     -e DISPLAY=$DISPLAY \
+    --cap-add SYS_ADMIN \
+    --device=/dev/fuse \
+    --privileged \
+    --security-opt apparmor:unconfined \
+    --security-opt seccomp:unconfined \
+    -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+    -v /lib/modules:/lib/modules:ro \
     -v /dev:/dev:rw \
     -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
     -v $HOME/.kl:/home/kl/.Kaffelogic\ Studio \
     -v $KAFFELOGIC_FILES:/home/kl/kaffelogic/ \
-    kaffelogic-studio:latest
+    -d kaffelogic-studio
