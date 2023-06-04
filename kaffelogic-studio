@@ -16,6 +16,8 @@ mkdir -p $KAFFELOGIC_FILES
 #    --tmpfs /run \
 #    --tmpfs /run/lock \
 
+# This disables a lot of security for Docker, but since this is just for local
+# execution and single-app use should be fine.
 xhost +local:*
 docker run \
     --name=kaffelogic-studio \
