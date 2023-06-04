@@ -20,6 +20,7 @@ $ docker build -f Dockerfile . -t kaffelogic-studio:latest
 2. Copy the udev rules file in /etc/udev/rules.d/
 3. sudo udevadm control --reload-rules && sudo udevadm trigger
 4. Launch kaffelogic-studio
+
 *Note: The udev portions are important to get KL Studio to recognize the USB*
 
 The above assumes your user's id is 1000 (currently hard-coded in the container image)
