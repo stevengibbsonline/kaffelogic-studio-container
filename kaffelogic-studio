@@ -20,6 +20,7 @@ mkdir -p $KAFFELOGIC_FILES
 # execution and single-app use should be fine.
 xhost +local:*
 docker run \
+    --rm \
     --name=kaffelogic-studio \
     -ti \
     -e DISPLAY=$DISPLAY \
