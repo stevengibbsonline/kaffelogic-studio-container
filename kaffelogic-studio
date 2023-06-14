@@ -18,21 +18,13 @@ mkdir -p $KAFFELOGIC_FILES
 
 # This disables a lot of security for Docker, but since this is just for local
 # execution and single-app use should be fine.
+dockerParams=()
+dockerParams+=(--rm --name=kaffelogic-studio -ti -e DISPLAY=$DISPLAY)
+dockerParams+=(--cap-add SYS_ADMIN --device=/dev/fuse --privileged)
+dockerParams+=(--security-opt apparmor:unconfined --security-opt seccomp:unconfined)
+dockerParams+=(-v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /lib/modules:/lib/modules:ro -v /dev:/dev:rw)
+[ -d "/media/$USER/USB DISK" ] && dockerParams+=(-v "/media/$USER/USB DISK":"/media/kl/USB DISK")
+dockerParams+=(-v /tmp/.X11-unix/:/tmp/.X11-unix/ -v $HOME/.kl:/home/kl/.Kaffelogic\ Studio)
+dockerParams+=(-v $KAFFELOGIC_FILES:/home/kl/kaffelogic/ -d kaffelogic-studio)
 xhost +local:*
-docker run \
-    --rm \
-    --name=kaffelogic-studio \
-    -ti \
-    -e DISPLAY=$DISPLAY \
-    --cap-add SYS_ADMIN \
-    --device=/dev/fuse \
-    --privileged \
-    --security-opt apparmor:unconfined \
-    --security-opt seccomp:unconfined \
-    -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-    -v /lib/modules:/lib/modules:ro \
-    -v /dev:/dev:rw \
-    -v /tmp/.X11-unix/:/tmp/.X11-unix/ \
-    -v $HOME/.kl:/home/kl/.Kaffelogic\ Studio \
-    -v $KAFFELOGIC_FILES:/home/kl/kaffelogic/ \
-    -d kaffelogic-studio
+docker run "${dockerParams[@]}"

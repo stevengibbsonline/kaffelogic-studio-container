@@ -22,5 +22,5 @@ $ docker build -f Dockerfile . -t kaffelogic-studio:latest
 4. Launch kaffelogic-studio
 
 *Note: The udev portions are important to get KL Studio to recognize the USB*
-
+*Note: If you have an older Kaffelogic that used the USB Drive, please mount your USB to "/media/$USER/USB DISK"*
 The above assumes your user's id is 1000 (currently hard-coded in the container image)
