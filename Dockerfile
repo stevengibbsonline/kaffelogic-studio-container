@@ -1,13 +1,14 @@
 # Using a Snapcore image to retrieve the upstream package and unsquash it.
 FROM  snapcore/snapcraft:edge
 
-RUN snap download kaffelogic-studio && unsquashfs -f -d kaffelogic-studio /kaffelogic-studio*.snap
+RUN snap download kaffelogic-studio
+RUN unsquashfs -f -d kaffelogic-studio /kaffelogic-studio*.snap
 
 #STAGE 2
 # Use Focal ubuntu just to run the KL Studio
 FROM  ubuntu:focal
 
-RUN apt update && apt install -y evince curl desktop-file-utils locales zlib1g && apt clean
+RUN apt-get update && apt install -y evince curl desktop-file-utils locales zlib1g && apt clean
 
 RUN locale-gen en_GB.UTF-8
 RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
