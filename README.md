@@ -35,7 +35,11 @@ If you run into a problem building this container seeing an error:
 FATAL ERROR:Data queue size is too large
 ```
 
-This is an issue with an interaction between squashfs and the system LimitNOFILE setting "infinity" that is being set by default in containerd which is a backing of newer versions of Docker.  To fix this, copy the included containerd.service.d folder to systemd and override this parameter.  You will then need to reload containerd service.  This example uses systemd, as it is most common, but if you use another Init manager like openrc or runit you'll need to convert this.
+This is an issue with an interaction between squashfs and the system LimitNOFILE setting "infinity" that is being set by default in containerd which is a backing of newer versions of Docker.
+
+See: https://github.com/canonical/lxd/issues/5449
+
+To fix this, copy the included containerd.service.d folder to systemd and override this parameter.  You will then need to reload containerd service.  This example uses systemd, as it is most common, but if you use another Init manager like openrc or runit you'll need to convert this.
 
 ```
 $ sudo cp -r containerd.service.d /etc/systemd/system  
