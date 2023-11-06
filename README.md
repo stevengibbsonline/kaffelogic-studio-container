@@ -44,5 +44,5 @@ To fix this, copy the included containerd.service.d folder to systemd and overri
 ```
 $ sudo cp -r containerd.service.d /etc/systemd/system  
 $ sudo systemctl daemon-reload
-$ sudo systemctl containerd restart
+$ sudo systemctl restart containerd
 ```
