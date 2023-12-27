@@ -6,12 +6,12 @@ Container Image for Kaffelogic Studio
 
 Kaffelogic changed their distribution method from Deb files to using Snap package manager making the original image no longer work.  Since not all distro's use snap, I built a way to retrieve and extract the latest build and execute KL studio.
 
-# Build
+# Building and Updating
 
 Clone this repo, cd into the directory, and then run:
 
 ```
-$ docker build -f Dockerfile . -t kaffelogic-studio:latest
+$ docker build --no-cache -f Dockerfile . -t kaffelogic-studio:latest
 ```
 
 # Running
