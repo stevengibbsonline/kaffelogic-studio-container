@@ -1,4 +1,4 @@
-*Forked from https://github.com/flaper87/kaffelogic-studio-container*
+*Forked from [https://github.com/flaper87/kaffelogic-studio-container](https://github.com/fatalsaint/kaffelogic-studio-container)*
 
 # kaffelogic-studio-container
 
@@ -16,10 +16,13 @@ $ docker build --no-cache -f Dockerfile . -t kaffelogic-studio:latest
 
 # Running
 
-1. Copy the kaffelogic-studio script somewhere in your $PATH
+1. Copy the kaffelogic-studio script somewhere in your $PATH 
+```sudo cp ./kaffelogic-studio ./usr/local/bin/kaffelogic-studio```
 2. Copy the udev rules file in /etc/udev/rules.d/
 3. sudo udevadm control --reload-rules && sudo udevadm trigger
 4. Launch kaffelogic-studio
+
+Note: ensure user is in dialout group. 
 
 *Note: The udev portions are important to get KL Studio to recognize the USB*
 
