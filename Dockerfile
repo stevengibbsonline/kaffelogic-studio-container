@@ -34,5 +34,4 @@ RUN useradd -u 1000 -g root -ms /bin/bash kl
 USER kl
 RUN mkdir -p /home/kl/.Kaffelogic\ Studio
 WORKDIR /home/kl
-RUN chown kl /home/kl/.Kaffelogic\ Studio
 CMD "/opt/kaffelogic-studio/studio"
