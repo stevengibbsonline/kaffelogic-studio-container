@@ -1,7 +1,7 @@
 # Using a Snapcore image to retrieve the upstream package and unsquash it.
 FROM  snapcore/snapcraft:edge
 
-RUN snap download kaffelogic-studio
+RUN snap download kaffelogic-studio --channel=beta
 RUN unsquashfs -f -d kaffelogic-studio /kaffelogic-studio*.snap
 
 #STAGE 2
@@ -15,7 +15,7 @@ RUN locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 # Setting up the default locale to en_US.UTF-8
 ENV LANG=en_US.UTF-8
-ENV TZ="America/Boise"
+ENV TZ="Pacific/Auckland"
 
 # Grabs the unpacked code from previous stage.
 # TODO: The postinstall section doesn't work right and can probably be removed.
